@@ -19,24 +19,24 @@ int main(){
     setIO();
     int g, p;
     cin >> g >> p;
-	// planes
+    // planes
     vi a(p);
     for(int i = 0; i < p; i++){
         cin >> a[i];
     }
-	// docking
-	set<int> left;
-	for(int i = 1; i <= g; i++){
-		left.insert(i);
+    // docking
+    set<int> left;
+    for(int i = 1; i <= g; i++){
+	left.insert(i);
+    }
+    // process
+    for(int i = 0; i < p; i++){
+	auto grter = left.upper_bound(a[i]);
+	if(grter == left.begin()){
+	    cout << i << "\n";
+	    return 0;
 	}
-	// process
-	for(int i = 0; i < p; i++){
-		auto grter = left.upper_bound(a[i]);
-		if(grter == left.begin()){
-			cout << i << "\n";
-			return 0;
-		}
-		left.erase(--grter);
-	}
-	cout << p << "\n";
+	left.erase(--grter);
+    }
+    cout << p << "\n";
 }
